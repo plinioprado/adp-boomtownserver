@@ -1,37 +1,35 @@
 import fetch from 'node-fetch';
-import { jsonGet, jsonGetById, jsonGetItemsByOwner } from './jsonServer';
-
+import { getUsers, getUser, getItems, getItem, jsonGetItemsByOwner } from './jsonServer';
 
 const resolveFunctions = {
   Query: {
     users() {
-      return jsonGet('users');
+      return getUsers();
     },
-
     user(root, { id }) {
-      return jsonGetById('users', id);     
+      return getUser(id);     
     },
     items() {
-      return jsonGet('items');
+      return getItems();
     },
     item(root, { id }) {
-      return jsonGetById('items', id);     
+      return getItem(id);     
     }
   },
 
   Item: {
     itemOwner(item) {
-      return jsonGetById('users', item.itemOwner);
+      return getUser(item.itemOwner);
     },
     borrower(item) {
       if (!item.borrower) return null;
-      return jsonGetById('items', item.borrower);
+      return getItem(item.borrower);
     }
   },
 
   User: {
-    items(user) {
-      return jsonGetItemsByOwner(user.id)
+    items: (user, args, context) => {
+      return context.loaders.getUserByOwner(user.id);
     }
   },
 
@@ -61,6 +59,5 @@ const resolveFunctions = {
     }
   }
 }
-
 
 export default resolveFunctions;
