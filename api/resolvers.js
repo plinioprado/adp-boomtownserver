@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { getUsers, getUser, getItems, getItem, jsonGetItemsByOwner } from './jsonServer';
+import { getUsers, getUser, getItems, getItem, getItemsByOwner, getBorrowed } from './jsonServer'
 
 const resolveFunctions = {
   Query: {
@@ -22,16 +22,25 @@ const resolveFunctions = {
       return getUser(item.itemOwner);
     },
     borrower(item) {
-      if (!item.borrower) return null;
-      return getItem(item.borrower);
+      if (!item.borrower) return null
+      return getUser(item.borrower);  
     }
   },
 
   User: {
-    items: (user, args, context) => {
-      return context.loaders.getUserByOwner(user.id);
+    items: (user) => {
+      return getItemsByOwner(user.id);
+    },
+    borrowed(user) {
+      return getBorrowed(user.id);
     }
   },
+
+  // User: {
+  //   items: (user, args, context) => {
+  //     return context.loaders.getItemsByOwner(user.id);
+  //   }
+  // },
 
   Mutation: {
 
