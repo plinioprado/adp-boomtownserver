@@ -25,15 +25,14 @@ export const getItems = () => {
     .catch(error => console.log(error))  
 }
 
-export const getItem = (id) => {
-  return fetch(`http://localhost:3001/items/${id}`)
+export const getItem = (userId) => {
+  return fetch(`http://localhost:3001/items/${userId}`)
     .then(response => response.json())
     .catch(error => console.log(error))  
 }
 
-export const getBorrowed = (user) => {
-  console.log(user);
-  return fetch(`http://localhost:3001/items?borrower=${user.id}`)
+export const getBorrowed = (userId) => {
+  return fetch(`http://localhost:3001/items?borrower=${userId}`)
     .then(response => response.json())
     .catch(errors => console.log(errors));
 }

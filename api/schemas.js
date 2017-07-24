@@ -40,7 +40,6 @@ const typeDefs = `
       itemOwner: ID!
     ): Item
   }
-
 `;
 
 export default makeExecutableSchema({
