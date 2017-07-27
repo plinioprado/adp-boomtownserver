@@ -18,7 +18,7 @@ const typeDefs = `
   type User {
     id: ID!
     email: String!
-    fullName: String
+    fullname: String
     bio: String
     items: [Item]
     borrowed: [Item]
@@ -39,6 +39,13 @@ const typeDefs = `
       tags: [String!]
       itemOwner: ID!
     ): Item
+
+    addUser (
+      fullname: String!
+      email: String!
+      bio: String
+      password: String!
+    ): User
   }
 `;
 

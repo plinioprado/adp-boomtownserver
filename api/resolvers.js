@@ -1,29 +1,37 @@
 import fetch from 'node-fetch';
-import { getUsers, getUser, getItems, getItem, getItemsByOwner, getBorrowed } from './jsonServer'
+import { psql } from 'pg';
+import { getUser2, createUser2 } from './postgresServer';
+import { getUser, getUsers, getItems, getItem, getItemsByOwner, getBorrowed } from './jsonServer';
+
 
 const resolveFunctions = {
   Query: {
     users() {
       return getUsers();
     },
-    user(root, { id }) {
-      return getUser(id);     
+    // user(root, args, context) {
+    //   return getUser(args.id);
+    // },
+    user(root, args, context) {
+      return context.loaders.getUser2.load(args.id);
     },
     items() {
       return getItems();
     },
     item(root, { id }) {
-      return getItem(id);     
+      return getItem(id);
     }
   },
 
   Item: {
-    itemOwner(item) {
-      return getUser(item.itemOwner);
+    // TODO: Refactor this and test the possibility return userid in th PG and map back to id in the object
+    itemOwner(item, args, context) {
+      return context.loaders.getUser2.load(item.itemOwner);
     },
-    borrower(item) {
-      if (!item.borrower) return null
-      return getUser(item.borrower);  
+    borrower(item, args, context) {
+      if (!item.borrower) return null;
+      // return getUser2(item.borrower);
+      return context.loaders.getUser2.load(item.borrower);
     }
   },
 
@@ -35,12 +43,6 @@ const resolveFunctions = {
       return getBorrowed(user.id);
     }
   },
-
-  // User: {
-  //   items: (user, args, context) => {
-  //     return context.loaders.getItemsByOwner(user.id);
-  //   }
-  // },
 
   Mutation: {
 
@@ -65,6 +67,10 @@ const resolveFunctions = {
       })
         .then(response => response.json())
         .catch(error => console.log(error));
+    },
+
+    addUser(user, args, context) {
+      return createUser2(args, context);
     }
   }
 }

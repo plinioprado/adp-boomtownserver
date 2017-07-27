@@ -8,7 +8,7 @@ const data = {
       "tags": [
         "Household Items"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497558858,
       "available": true,
       "borrower": null
@@ -22,10 +22,10 @@ const data = {
         "Household Items",
         "Recreational Equipment"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497546618,
       "available": false,
-      "borrower": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1"
+      "borrower": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2"
     },
     {
       "id": 3,
@@ -35,7 +35,7 @@ const data = {
       "tags": [
         "Musical Instruments"
       ],
-      "itemOwner": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1",
+      "itemOwner": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2",
       "createdOn": 1497534618,
       "available": true,
       "borrower": null
@@ -48,7 +48,7 @@ const data = {
       "tags": [
         "Tools"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497504600,
       "available": true,
       "borrower": null
@@ -61,10 +61,10 @@ const data = {
       "tags": [
         "Physical Media"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497489120,
       "available": false,
-      "borrower": "HHFm1yqXABRuAmwuuMC6RJYc7fr2"
+      "borrower": "dQg4HT262FYOiuOUIRj1xrXjOva2"
     },
     {
       "id": 6,
@@ -74,7 +74,7 @@ const data = {
       "tags": [
         "Physical Media"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497466800,
       "available": true,
       "borrower": null
@@ -87,7 +87,7 @@ const data = {
       "tags": [
         "Musical Instruments"
       ],
-      "itemOwner": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1",
+      "itemOwner": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2",
       "createdOn": 1497433740,
       "available": true,
       "borrower": null
@@ -101,10 +101,10 @@ const data = {
         "Recreational Equipment",
         "Sporting Goods"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497406380,
       "available": false,
-      "borrower": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1"
+      "borrower": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2"
     },
     {
       "id": 9,
@@ -114,10 +114,10 @@ const data = {
       "tags": [
         "Sporting Goods"
       ],
-      "itemOwner": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1",
+      "itemOwner": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2",
       "createdOn": 1497398220,
       "available": false,
-      "borrower": "bt26ImStpfTd0TGWFK91f9lIaZy1"
+      "borrower": "TyHcYnSocuOg6PmWQivgxerTLcq2"
     },
     {
       "id": 10,
@@ -127,7 +127,7 @@ const data = {
       "tags": [
         "Household Items"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497377580,
       "available": true,
       "borrower": null
@@ -140,7 +140,7 @@ const data = {
       "tags": [
         "Electronics"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497365340,
       "available": true,
       "borrower": null
@@ -153,10 +153,10 @@ const data = {
       "tags": [
         "Electronics"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497333660,
       "available": false,
-      "borrower": "bt26ImStpfTd0TGWFK91f9lIaZy1"
+      "borrower": "TyHcYnSocuOg6PmWQivgxerTLcq2"
     },
     {
       "id": 13,
@@ -166,7 +166,7 @@ const data = {
       "tags": [
         "Physical Media"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497313680,
       "available": true,
       "borrower": null
@@ -179,7 +179,7 @@ const data = {
       "tags": [
         "Electronics"
       ],
-      "itemOwner": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1",
+      "itemOwner": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2",
       "createdOn": 1497280260,
       "available": true,
       "borrower": null
@@ -192,7 +192,7 @@ const data = {
       "tags": [
         "Electronics"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497264000,
       "available": true,
       "borrower": null
@@ -205,10 +205,10 @@ const data = {
       "tags": [
         "Tools"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497238620,
       "available": false,
-      "borrower": "HHFm1yqXABRuAmwuuMC6RJYc7fr2"
+      "borrower": "dQg4HT262FYOiuOUIRj1xrXjOva2"
     },
     {
       "id": 17,
@@ -218,7 +218,7 @@ const data = {
       "tags": [
         "Recreational Equipment"
       ],
-      "itemOwner": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1",
+      "itemOwner": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2",
       "createdOn": 1497196860,
       "available": true,
       "borrower": null
@@ -231,7 +231,7 @@ const data = {
       "tags": [
         "Recreational Equipment"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497144600,
       "available": true,
       "borrower": null
@@ -244,7 +244,7 @@ const data = {
       "tags": [
         "Electronics"
       ],
-      "itemOwner": "HHFm1yqXABRuAmwuuMC6RJYc7fr2",
+      "itemOwner": "dQg4HT262FYOiuOUIRj1xrXjOva2",
       "createdOn": 1497120540,
       "available": true,
       "borrower": null
@@ -257,10 +257,10 @@ const data = {
       "tags": [
         "Tools"
       ],
-      "itemOwner": "bt26ImStpfTd0TGWFK91f9lIaZy1",
+      "itemOwner": "TyHcYnSocuOg6PmWQivgxerTLcq2",
       "createdOn": 1497072300,
       "available": false,
-      "borrower": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1"
+      "borrower": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2"
     },
     {
       "id": 21,
@@ -270,7 +270,7 @@ const data = {
       "tags": [
         "Household Items"
       ],
-      "itemOwner": "3QZ8uHjHbIVBEvKAjUZlr3zdECi1",
+      "itemOwner": "LAi9TYWxgGhbjgHu1Sm6ZvB1tRP2",
       "createdOn": 1497044400,
       "available": true,
       "borrower": null
