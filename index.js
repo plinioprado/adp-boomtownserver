@@ -1,4 +1,3 @@
-//import { } from 'dotenv/config';
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -19,8 +18,6 @@ admin.initializeApp({
   databaseURL: "https://boomtown-6e182.firebaseio.com"
 });
 
-
-
 const GQL_PORT = 4400;
 const app = express();
 
@@ -30,30 +27,6 @@ dotenv.config();
 app.use('*', cors());
 
 app.use(bodyParser.json());
-
-// app.use('/graphql', (req, res, next) => {
-//   const { operationName, variables } = req.body;
-//   if (operationName && operationName === 'addUser') {
-//     admin.auth().createCustomToken(variables.email)
-//       .then(token => {
-//         console.log(token);
-//         next();
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         next();
-//       });
-//   } else {
-//     next();
-//   }
-// });
-
-// app.use('/graphql', graphqlExpress({
-//   schema,
-//   context: {
-//     loaders: createLoaders()
-//   }
-//  }));
 
 app.use('/graphql', graphqlExpress(req => {
   return {
@@ -67,8 +40,5 @@ app.use('/graphql', graphqlExpress(req => {
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql'
 }));
-
-
-
 
 app.listen(GQL_PORT, () => console.log(`GraphicQL running on localhost: ${GQL_PORT}/graphql`));

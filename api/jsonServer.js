@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 export const getItemsByOwner = (id) => {
-  return fetch(`http://localhost:3001/items?itemOwner=${id}`)
+  return fetch(`http://localhost:3001/items?itemowner=${id}`)
     .then(response => response.json())
     .catch(error => console.log(error))
 }

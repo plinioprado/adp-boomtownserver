@@ -7,9 +7,6 @@ export default function() {
     getItemsByOwner: new DataLoader(ids => (
       Promise.all(ids.map(id => getItemsByOwner(id)))
     )),
-    // getUser: new DataLoader(ids => (
-    //   Promise.all(ids.map(id => getUser(id)))
-    // )),
     getUser2: new DataLoader(ids => (
       Promise.all(ids.map(id => getUser2(id)))
     )),
