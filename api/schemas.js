@@ -8,17 +8,17 @@ const typeDefs = `
     title: String!
     description: String!
     imageurl: String
-    tags: [Tag]
-    itemowner: User
+    tags: [Tag]!
+    itemowner: User!
+    createdon: String
     available: Boolean!
     borrower: User
-    createdon: String
   }
 
   type User {
     id: ID!
     email: String!
-    fullname: String
+    fullname: String!
     bio: String
     items: [Item]
     borrowed: [Item]
@@ -26,7 +26,11 @@ const typeDefs = `
 
   type Tag {
     id: Int
-    title: [String!]
+    title: String!
+  }
+
+  input AssignedTag {
+    id: Int!
   }
 
   type Query {
@@ -37,24 +41,20 @@ const typeDefs = `
     tags:[Tag]
   }
 
-  input AssignedTags {
-    id: Int
-  }
-
   type Mutation {
     
     addItem (
       title: String!
       description: String!
       imageurl: String
-      tags: [AssignedTags]
+      tags: [AssignedTag]
       itemowner: ID!
     ): Item
 
     addUser (
       fullname: String!
-      email: String!
       bio: String
+      email: String!
       password: String!
     ): User
   }

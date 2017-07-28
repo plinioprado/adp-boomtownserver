@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { psql } from 'pg';
-import { getUser2, createUser2, getItems2 } from './postgresServer';
-import { getUser, getUsers, getItems, getItem, getItemsByOwner, getBorrowed } from './jsonServer';
+import { createUser2, getItems, getTags, getUser} from './postgresServer';
+// import { getUser, getUsers, getItem, getItemsByOwner, getBorrowed } from './jsonServer';
 
 
 const resolveFunctions = {
@@ -10,26 +10,26 @@ const resolveFunctions = {
       return getUsers();
     },
     user(root, args, context) {
-      return context.loaders.getUser2.load(args.id);
+      return context.loaders.getUser.load(args.id);
     },
     items() {
-      return getItems2();
+      return getItems();
     },
-    item(root, { id }) {
-      return getItem(id);
+    item(root, args, context) {
+      return context.loaders.getItem.load(args.id);
     }
   },
 
   Item: {
     tags(item, args, context) {
-      return getTagsByItem(user);
+      return getTags(item.id);
     },
     itemowner(item, args, context) {
-      return context.loaders.getUser2.load(item.itemowner);
+      return getUser(item.itemowner);
     },
     borrower(item, args, context) {
       if (!item.borrower) return null;
-      return context.loaders.getUser2.load(item.borrower);
+      return getUser(item.borrower);
     }
   },
 
@@ -47,29 +47,6 @@ const resolveFunctions = {
     addItem(root, args) {
       return addItem2(args);
     },
-
-    // addItem(root, args) {
-    //   console.log(args);
-    //   const newItem = {
-    //     title: args.title,
-    //     description: args.description,
-    //     imageurl: args.imageurl,
-    //     tags: args.tags,
-    //     itemowner: args.itemowner,
-    //     createdon: Math.floor(Date.now() / 1000),
-    //     available: false,
-    //     borrower: null
-    //   }
-    //   return fetch(`http://localhost:3001/items`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(newItem)
-    //   })
-    //     .then(response => response.json())
-    //     .catch(error => console.log(error));
-    // },
 
     addUser(user, args, context) {
       return createUser2(args, context);

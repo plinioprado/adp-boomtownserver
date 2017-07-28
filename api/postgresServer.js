@@ -1,30 +1,40 @@
 import pool from '../database';
 import admin from 'firebase-admin';
 
-export function getUser2(id) {
+export function getItems() {
 
   return new Promise(async (res, rej) => {
     try {
-        let user = await pool.query(`SELECT * FROM user_profiles WHERE id='${id}'`);
-        const fbUser = await admin.auth().getUser(id);
-        user = user.rows[0];
-        user = {...user, email: fbUser.email };
-        res(user);
+       const queryText =  `SELECT itemid AS id, title, description, imageurl, itemowner, createdon, available, borrower FROM items`;
+       let items = await pool.query(queryText);
+       res(items.rows);
     } catch(error) {
-        console.log(error);
+        rej(error);
+    }
+  });
+}
+
+export function getItem(id) {
+
+  return new Promise(async (res, rej) => {
+    try {
+       const queryText =  `SELECT i.itemid AS id, i.title, i.description, i.imageurl, itemowner, createdon, available, borrower FROM items WHERE itemid = ${id}`;
+       let items = await pool.query(queryText);
+       console.log(items);
+       res(items.rows[0]);
+    } catch(error) {
         rej(error);
     }
   });
 }
 
 export function addItem2(args) {
-  console.log('will create Item');
 
     try {
 
       return new Promise(async (resolve, reject) => {
         const itemQuery = {
-          text: 'hv jkldfh jlk',
+          text: `INSERT INTO items () VALUES ();`,
           values: [args.a, args.b]
         }
         const newItem = await pool.query(itemQuery);
@@ -54,28 +64,33 @@ export function addItem2(args) {
   // }
 };
 
-
-export function getItems2(id) {
+export function getTags(id) {
 
   return new Promise(async (res, rej) => {
     try {
-        let items = await pool.query(`SELECT *, itemid AS id FROM items`);
-        items.rows = items.rows.map(it => {
-          if (it.borrower) it.borrower = { id: it.borrower, fullname: 'xxx'};
-            else delete it.borrower;
-          return it
-        });
-        console.log(items.rows);
-        res(items.rows);
+       const queryText =  `SELECT t.title FROM itemtags it INNER JOIN tags t ON it.tagid = t.tagid WHERE it.itemid = ${id}`;
+       let items = await pool.query(queryText);
+       res(items.rows);
     } catch(error) {
-        console.log(error);
         rej(error);
     }
   });
 }
 
-export function getTags(itemId) {
-  return pool.query(`select * from tags`);
+export function getUser(id) {
+
+  return new Promise(async (res, rej) => {
+    try {
+        let user = await pool.query(`SELECT * FROM user_profiles WHERE id='${id}'`);
+        const fbUser = await admin.auth().getUser(id);
+        user = user.rows[0];
+        user = {...user, email: fbUser.email };
+        res(user);
+    } catch(error) {
+        console.log(error);
+        rej(error);
+    }
+  });
 }
 
 export function createUser2(args, context) {
@@ -103,13 +118,4 @@ export function createUser2(args, context) {
           rej(error);
       }
   });
-}
-
-function createItem(args, contect) {
-
-  console.log('will creata Item');
-  return {
-
-  }
-
 }
