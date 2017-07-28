@@ -20,8 +20,33 @@ export function getItem(id) {
     try {
        const queryText =  `SELECT i.itemid AS id, i.title, i.description, i.imageurl, itemowner, createdon, available, borrower FROM items WHERE itemid = ${id}`;
        let items = await pool.query(queryText);
-       console.log(items);
        res(items.rows[0]);
+    } catch(error) {
+        rej(error);
+    }
+  });
+}
+
+export function getItemsByOwner(id) {
+
+  return new Promise(async (res, rej) => {
+    try {
+       const queryText =  `SELECT itemid AS id, title, description, imageurl, itemowner, createdon, available, borrower FROM items WHERE itemowner = '${id}'`;
+       let items = await pool.query(queryText);
+       res(items.rows);
+    } catch(error) {
+        rej(error);
+    }
+  });
+}
+
+export function getBorrowed(id) {
+
+  return new Promise(async (res, rej) => {
+    try {
+       const queryText =  `SELECT itemid AS id, title, description, imageurl, itemowner, createdon, available, borrower FROM items WHERE borrower = '${id}'`;
+       let items = await pool.query(queryText);
+       res(items.rows);
     } catch(error) {
         rej(error);
     }
@@ -51,7 +76,6 @@ export function addItem2(args) {
       });
 
     } catch(err) {
-      console.log(err);
       reject(err);
     }
 
@@ -87,7 +111,6 @@ export function getUser(id) {
         user = {...user, email: fbUser.email };
         res(user);
     } catch(error) {
-        console.log(error);
         rej(error);
     }
   });
@@ -114,7 +137,6 @@ export function createUser2(args, context) {
         res(user);
 
       } catch(error) {
-          console.log(error);
           rej(error);
       }
   });

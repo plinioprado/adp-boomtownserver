@@ -1,6 +1,5 @@
 import DataLoader from 'dataloader';
-import { getItemsByOwner, getItem } from './jsonServer';
-import { getUser } from './postgresServer';
+import { getUser, getItemsByOwner, getItem} from './postgresServer';
 
 export default function() {
   return {
