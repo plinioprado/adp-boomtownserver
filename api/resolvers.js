@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { psql } from 'pg';
-import { createUser2, getItems, getItemsByOwner, getTags, getUser, getBorrowed} from './postgresServer';
+import { addUser, getItems, getItemsByOwner, getTags, getUser, getBorrowed} from './postgresServer';
 // import { getUser, getUsers, getItem, getItemsByOwner, getBorrowed } from './jsonServer';
 
 
@@ -49,7 +49,7 @@ const resolveFunctions = {
     },
 
     addUser(user, args, context) {
-      return createUser2(args, context);
+      return addUser(args, context);
     }
   }
 }

@@ -116,27 +116,26 @@ export function getUser(id) {
   });
 }
 
-export function createUser2(args, context) {
+export function addUser(args, context) {
 
     return new Promise(async (res, rej) => {
 
       try {
-
+        console.log('will log fb')
         let fbUser = await admin.auth().createUser({
           email: args.email,
           password: args.password
         });
-        
-        const query = {
-          text: `INSERT INTO user_profiles (id, fullname, bio) VALUES ($1, $2, $3) RETURNING *`,
-          values: [fbUser.uid, args.fullname, args.bio]
-        }
+        console.log('got id'+fbUser.uid);
+        const query = `INSERT INTO user_profiles (id, fullname, bio) VALUES ('${fbUser.uid}', '${args.fullname}', '${args.bio}') RETURNING *`;
+        console.log(query);
         let pgUser = await pool.query(query);
 
         let user = { ...pgUser.rows[0], email: fbUser.email, id: fbUser.uid };
         res(user);
 
       } catch(error) {
+        console.log('error', error)
           rej(error);
       }
   });
