@@ -8,6 +8,7 @@ import {
 import schema from './api/schemas';
 import cors from 'cors';
 import createLoaders from './api/loaders';
+import firebaseAuthMiddleware from './api/middleware';
 
 import admin from 'firebase-admin';
 
@@ -27,6 +28,8 @@ dotenv.config();
 app.use('*', cors());
 
 app.use(bodyParser.json());
+
+// app.use('/graphql', firebaseAuthMiddleware); // TODO: later activate using process.env.NODE_ENV
 
 app.use('/graphql', graphqlExpress(req => {
   return {

@@ -102,7 +102,7 @@ export function getTags(id) {
 }
 
 export function getUser(id) {
-
+  console.log('in getUserPg')
   return new Promise(async (res, rej) => {
     try {
         let user = await pool.query(`SELECT * FROM user_profiles WHERE id='${id}'`);
