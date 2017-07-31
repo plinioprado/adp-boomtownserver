@@ -33,6 +33,10 @@ const typeDefs = `
     id: Int!
   }
 
+  input AssignedUserId {
+    id: ID!
+  }
+
   type Query {
     items: [Item]
     item(id: ID!): Item
@@ -57,6 +61,11 @@ const typeDefs = `
       email: String!
       password: String!
     ): User
+
+    updItemBorrower (
+      id: ID!
+      borrower: ID!
+    ): Item
   }
 `;
 

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { psql } from 'pg';
-import { addUser, getItems, getItemsByOwner, getTags, getUser, getBorrowed} from './postgresServer';
+import { addUser, getItems, getItemsByOwner, getTags, getUser, getBorrowed, updItemBorrower} from './postgresServer';
 // import { getUser, getUsers, getItem, getItemsByOwner, getBorrowed } from './jsonServer';
 
 
@@ -44,12 +44,16 @@ const resolveFunctions = {
 
   Mutation: {
 
-    addItem(root, args) {
-      return addItem2(args);
+    addItem(root, args, context) {
+      return addItem(args, context);
     },
 
     addUser(user, args, context) {
       return addUser(args, context);
+    },
+
+    updItemBorrower(root, args) {
+      return updItemBorrower(args);
     }
   }
 }

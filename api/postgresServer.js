@@ -5,7 +5,7 @@ export function getItems() {
 
   return new Promise(async (res, rej) => {
     try {
-       const queryText =  `SELECT itemid AS id, title, description, imageurl, itemowner, createdon, available, borrower FROM items`;
+       const queryText =  `SELECT id, title, description, imageurl, itemowner, createdon, available, borrower FROM items`;
        let items = await pool.query(queryText);
        res(items.rows);
     } catch(error) {
@@ -18,7 +18,7 @@ export function getItem(id) {
 
   return new Promise(async (res, rej) => {
     try {
-       const queryText =  `SELECT i.itemid AS id, i.title, i.description, i.imageurl, itemowner, createdon, available, borrower FROM items WHERE itemid = ${id}`;
+       const queryText =  `SELECT id, i.title, i.description, i.imageurl, itemowner, createdon, available, borrower FROM items WHERE id = ${id}`;
        let items = await pool.query(queryText);
        res(items.rows[0]);
     } catch(error) {
@@ -31,7 +31,7 @@ export function getItemsByOwner(id) {
 
   return new Promise(async (res, rej) => {
     try {
-       const queryText =  `SELECT itemid AS id, title, description, imageurl, itemowner, createdon, available, borrower FROM items WHERE itemowner = '${id}'`;
+       const queryText =  `SELECT id, title, description, imageurl, itemowner, createdon, available, borrower FROM items WHERE itemowner = '${id}'`;
        let items = await pool.query(queryText);
        res(items.rows);
     } catch(error) {
@@ -44,7 +44,7 @@ export function getBorrowed(id) {
 
   return new Promise(async (res, rej) => {
     try {
-       const queryText =  `SELECT itemid AS id, title, description, imageurl, itemowner, createdon, available, borrower FROM items WHERE borrower = '${id}'`;
+       const queryText =  `SELECT id, title, description, imageurl, itemowner, createdon, available, borrower FROM items WHERE borrower = '${id}'`;
        let items = await pool.query(queryText);
        res(items.rows);
     } catch(error) {
@@ -53,40 +53,29 @@ export function getBorrowed(id) {
   });
 }
 
-export function addItem2(args) {
-
+export function addItem(args, context) {
+  return new Promise(async(res,rej)=>{
     try {
-
-      return new Promise(async (resolve, reject) => {
-        const itemQuery = {
-          text: `INSERT INTO items () VALUES ();`,
-          values: [args.a, args.b]
-        }
-        const newItem = await pool.query(itemQuery);
-        function inserttags(tags) {
-          return tags.map(tag => {
-            return `(${item.id}, ${tag.id})`;
-          }).join(',')
-        };
-      const tagQuery = {
-          text: 'INSERT INTO itemtags (itemid, tagid) VALUES (${insertTags(args.tags)});'
+      const itemQuery = {
+        text: 'INSERT INTO items(title, description, imageurl, itemowner) VALUES($1, $2, $3, $4) RETURNING *',
+        values: [args.title, args.description, args.imageurl, args.itemowner]
       }
-      const tags = await pool.query(tagQuery);
-      resolve({id: newItem.rows[0].id});
-      });
-
-    } catch(err) {
-      reject(err);
+      const newItem = await pool.query(itemQuery) //inserted item reference
+      function insertTag(tags) {
+        return tags.map(tag=>{
+          return `(${newItem.rows[0].id}, ${tag.id})`
+        }).join(',')
     }
-
-  // return {
-  //   title: 'newtitle',
-  //   description: 'my description msnm fjksl hfjlhj fskjlh fljks hjkflsjlsf',
-  //   imageurl: 'http://hjklhjklhjklhjklhjlkkhjl',
-  //   tags: [{id: 1, title: 'aaaaaa'}, {id: 2, title: 'bbbbbb'}],
-  //   itemowner: '1111111111111111'
-  // }
-};
+      const tagQuery ={
+          text: `INSERT INTO itemtags(itemid, tagid) VALUES ${insertTag(args.tags)}`
+      }
+      const tags = await pool.query(tagQuery)
+      res({...newItem.rows[0], title: newItem.rows[0].title})
+    } catch(error) {
+      rej(error)
+    }
+})
+}
 
 export function getTags(id) {
 
@@ -102,7 +91,6 @@ export function getTags(id) {
 }
 
 export function getUser(id) {
-  console.log('in getUserPg')
   return new Promise(async (res, rej) => {
     try {
         let user = await pool.query(`SELECT * FROM user_profiles WHERE id='${id}'`);
@@ -140,3 +128,30 @@ export function addUser(args, context) {
       }
   });
 }
+
+
+// export function updItemBorrower(args) {
+//    const query = {
+//        text: ‘UPDATE items SET borrower=$1 WHERE id=$2 RETURNING *‘,
+//        values: [args.borrower, args.id]
+//    }
+//    return pool.query(query).then(response => {
+//        return (response.rows[0]);
+//    }).catch(errors => console.log(errors));
+// }
+
+
+
+export function updItemBorrower(item) {
+
+  return new Promise(async (res, rej) => {
+    try {
+       const queryText =  `UPDATE items SET borrower = '${item.borrower}' WHERE id = ${item.id} RETURNING *`;
+       let items = await pool.query(queryText);
+       res(items.rows);
+    } catch(error) {
+        rej(error);
+    }
+  });
+}
+ 
